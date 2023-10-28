@@ -26,7 +26,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void login(UserLoginDTo userLoginDTo) {
+    public User login(UserLoginDTo userLoginDTo) {
         User existingUser = userRepository.findByUsername(userLoginDTo.getUsername());
 
         if (existingUser == null || !existingUser.getPassword().equals(userLoginDTo.getPassword())) {
@@ -34,6 +34,7 @@ public class UserService {
         }
 
         // Perform any additional processing
+        return existingUser;
     }
 
     public void addUserDetails(UserDetailsDTO userDetailsDTO){
